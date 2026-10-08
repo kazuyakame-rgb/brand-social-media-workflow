@@ -154,7 +154,7 @@ python scripts/build_kb.py --src ./kb-src --target workbuddy --out ./kb --check-
 - **企业 AI 落地陪跑** —— 从流程诊断、工具选型到工作流搭建，陪你的团队把 AI 落到具体业务里，而不是停在"试了几个工具"
 - **社媒代运营** —— 品牌社媒全流程托管，含面向日本市场的本地化内容生产
 
-合作咨询：开 issue，或在 GitHub 上私信 [@kazuyakame-rgb](https://github.com/kazuyakame-rgb)。
+合作咨询：<hihubcn@126.com>（也可以直接开 issue）。
 
 ## License
 
