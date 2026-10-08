@@ -1,0 +1,21 @@
+# 本地配置（含品牌资料，不进仓库）
+config.yaml
+brand-profile.md
+
+# 生成物
+outputs/
+kb/
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

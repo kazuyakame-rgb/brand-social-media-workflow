@@ -1,0 +1,68 @@
+# 工具链与目标配置（复制为 config.yaml 后修改）
+# 不落盘也可以 —— 直接在对话里告诉 agent：知识库放哪、用什么生图、做哪几个平台、出哪几种语言。
+
+# ---- 品牌档案 ----
+brand_profile: brand-profile.md        # 见 brand-profile.template.md
+
+# ---- Stage 1 知识库落地位置 ----
+# workbuddy: WorkBuddy 资料库（原生空间，建文件夹 + 建 doc 节点，可语义检索问答）
+# obsidian : Obsidian vault（frontmatter + [[双链]] + 标签体系）
+# local    : 本地 Markdown 目录（零依赖）
+# dingtalk : 钉钉知识库 + 钉盘（需 dws CLI 且已登录）
+# feishu   : 飞书知识库
+# notion   : Notion
+# none     : 不归档，文档直接留在工作目录
+knowledge_base:
+  target: workbuddy
+
+  # —— workbuddy ——
+  space_id: ""                         # 留空则用服务默认空间；多空间时先 list-user-spaces 选一个
+  folder_title: ""                     # 知识库文件夹名，例：<品牌名>知识库；留空用品牌名
+  qa_enabled: true                     # 落地后可用 rag_search 做知识库问答
+
+  # —— obsidian ——
+  vault_path: ""                       # vault 根目录；留空则输出到 ./kb
+  subfolder: ""                        # vault 内子目录，例：品牌/<品牌名>
+  tags: [品牌知识库]                   # 写进 frontmatter 的标签
+  aliases: []                          # 品牌名错写变体，写进 aliases 便于搜索命中
+
+  # —— local / 通用 ——
+  path: ./kb
+  upload_raw_files: true               # 原始资料是否一并归档
+
+  # —— dingtalk / feishu ——
+  space_name: ""
+
+# ---- Stage 5 生图后端 ----
+# 1xm      : 1XM.AI gpt-image-2（国内可用，支持 4K）
+# openai   : OpenAI 官方 gpt-image-1 / dall-e
+# wanxiang : 阿里云通义万相
+# jimeng   : 火山即梦
+# none     : 只出 prompt，不调用任何 API（默认，零 key 也能用）
+# 也可填 custom 并在 base_url / model 里指定任意 OpenAI 兼容端点
+image:
+  backend: none
+  base_url: ""                         # 留空则用 backend 预设端点
+  model: ""                            # 留空则用 backend 预设模型
+  api_key_env: IMAGE_API_KEY           # 从该环境变量读 key
+  default_size: 1024x1536              # 小红书竖版；宽幅用 1536x1024
+  default_mode: A                      # A=打底+叠字 B=固定排版直出 C=自由排版直出
+
+# ---- Stage 3/4 目标平台组合 ----
+# cn     : 小红书 + 抖音 + 公众号（默认）
+# global : Instagram + TikTok + Facebook
+# custom : 在 custom 里自填（取值见 platforms.md）
+platforms:
+  set: cn
+  custom: []
+
+# ---- Stage 6 语言 ----
+markets:
+  source_lang: zh
+  target_langs: [zh]
+
+# ---- 默认交付偏好 ----
+delivery:
+  strategy_docs: html                  # html | markdown
+  copy_docs: markdown
+  review_before_deliver: true          # 成稿/海报交付前自检
